@@ -11,10 +11,14 @@ def sql_connect():
         print(Error)
 
 
-def create_table(con, table_name):
+def create_table(con, table_name, coins):
     cursorObj = con.cursor()
+    value_str = '('
+    for coin in coins:
+        value_str += + coin + ' integer, '
+    value_str += 'time text unique)'
     cursorObj.execute('CREATE TABLE IF NOT EXISTS ' + table_name +
-                      '(btc integer, eth integer, xrp integer, xlm integer, time text unique)')
+                      value_str)
     con.commit()
     cursorObj.close()
 
@@ -29,8 +33,11 @@ def get_data(con, table_name):
 def save_data(con, data, table_name):
     create_table(con, table_name)
     cursorObj = con.cursor()
-    cursorObj.execute('insert into ' + table_name +
-                      ' values(?, ?, ?, ?, ?)', data)
+    value_str = ' values('
+    for _ in data:
+        value_str += '?, '
+    value_str += ')'
+    cursorObj.execute('insert into ' + table_name + value_str, data)
 
     con.commit()
     cursorObj.close()
