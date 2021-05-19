@@ -53,7 +53,7 @@ def get_bitstamp_prices():
 
 # Fee calculating function
 def calc_fee(price, fee_size):
-    return (fee_size * price + 6.41 * eur)
+    return (fee_size * price + 10 * eur)
 
 
 # Percentage Difference Function
@@ -75,6 +75,8 @@ def main():
         'XRP': calc_fee(prices['bitstamp']['XRP'], 0.02),
         'LTC': calc_fee(prices['bitstamp']['LTC'], 0.001),
     }
+
+    print(fees)
 
     amount = 1000000
     for i in range(len(coins)):

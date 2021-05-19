@@ -7,7 +7,7 @@ A simple arbitrage calculator between various crypto exchanges.
 - [ ] Pull prices from various different exchanges.
 - [ ] Be able to select which exchanges. 
 - [ ] Add in custom fees.
-- [ ] Save prices to database.
+- [x] Save prices to database.
 - [ ] Show price differences through a line chart.
 - [ ] Check to see if amount invested will generate profit.
 - [ ] Add multiple language support.
