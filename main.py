@@ -2,15 +2,14 @@
 import importlib
 import time
 import schedule
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 api = importlib.import_module('api')
 dbh = importlib.import_module('databasehandle')
 
 # Hardcoded values - will be made adjustable in the future.
-coins = ['BTC', 'ETH', 'XLM', 'XRP']
+coins = ['XLM', 'XRP']
 fees = {
-    'BTC': 0.005,
-    'ETH': 0.03,
     'XLM': 0.005,
     'XRP': 0.02
 }
