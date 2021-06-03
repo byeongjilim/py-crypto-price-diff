@@ -2,3 +2,9 @@ venv
 *.db
 test.py
 __pycache__
+dist
+build
+test-notification.py
+main.py
+notificationhandle.py
+main.spec

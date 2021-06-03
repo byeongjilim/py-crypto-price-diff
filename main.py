@@ -2,10 +2,10 @@
 import importlib
 import time
 import schedule
-from http.server import BaseHTTPRequestHandler, HTTPServer
-
-api = importlib.import_module('api')
-dbh = importlib.import_module('databasehandle')
+from win10toast import ToastNotifier
+import api
+import databasehandle as dbh
+# import notificationhandle as notif
 
 # Hardcoded values - will be made adjustable in the future.
 coins = ['XLM', 'XRP']
@@ -16,6 +16,7 @@ fees = {
 exchanges = ['bitstamp', 'gopax', 'upbit']
 amount = 1000000
 
+# sent_not_today = False
 
 def get_data():
     data = {}
@@ -56,8 +57,19 @@ def calc_diff(data):
             (1 / bitstamp[coin] * (amount - calculated_fees[coin])) / (1 / gopax[coin] * amount) * 100000)
         result['upbit'][coin] = round(
             (1 / bitstamp[coin] * (amount - calculated_fees[coin])) / (1 / upbit[coin] * amount) * 100000)
+#        if result['gopax'][coin] / 1000 > 108:
+#            if sent_not_today == False:
+#                notif.send_notif(result['gopax'][coin] / 1000, '고팍스')
+#                sent_not_today = True
+#        if result['upbit'][coin] / 1000 > 108:
+#                notif.send_notif(result['upbit'][coin] / 1000, 'Upbit')
+#                sent_not_today = True
+        print("GOPAX " + coin + " " + str(result['gopax'][coin] / 1000) + "%")
+        print("Upbit " + coin + " " + str(result['upbit'][coin] / 1000) + "%")
     return result
     # Remember that results are 1000 times what they should be. To get the percentage, divide by 1000
+
+
 
 
 repeat_job()
